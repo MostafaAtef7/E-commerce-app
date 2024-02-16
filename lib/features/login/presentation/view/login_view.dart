@@ -50,7 +50,8 @@ class _LoginViewState extends State<LoginView> {
               },
               controller: null,
               obsureText: false,
-              label: 'Email',
+              label: 'email',
+              onTap: (){},
             ),
             CustomTextFormField(
               // hintText: "password",
@@ -69,7 +70,8 @@ class _LoginViewState extends State<LoginView> {
               },
               controller: null,
               obsureText: true,
-              label: 'Password',
+              label: 'password',
+              onTap: (){},
             ),
             const SizedBox(
               height: 25,
@@ -105,7 +107,7 @@ class _LoginViewState extends State<LoginView> {
                       color: Colors.blue,
                     ),
                   ),
-                )
+                ),
               ],
             )
           ],

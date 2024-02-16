@@ -9,13 +9,16 @@ class CustomTextFormField extends StatelessWidget {
     required this.onChanged,
     required this.validator,
     @required this.controller,
-    required this.obsureText, required this.label,
+    required this.obsureText,
+    required this.label,
+    required this.onTap,
   });
   // final String hintText;
   final Icon suffixIcon;
   final bool obsureText;
   final Function(String)? onSumbitted;
   final Function(String)? onChanged;
+  final Function()? onTap;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
   final String label;
@@ -40,7 +43,7 @@ class CustomTextFormField extends StatelessWidget {
               color: Colors.blue,
               fontSize: 15,
             ),
-            contentPadding: const EdgeInsets.only(left: 18,top: 7),
+            contentPadding: const EdgeInsets.only(left: 18, top: 7),
             // hintText: hintText,
             // hintStyle: const TextStyle(color: Colors.grey, fontSize: 15),
             suffixIcon: suffixIcon,
@@ -51,6 +54,7 @@ class CustomTextFormField extends StatelessWidget {
             focusedBorder: OutlineInputBorder(
                 gapPadding: 10, borderRadius: BorderRadius.circular(24)),
           ),
+          onTap: onTap,
         ),
       ),
     );
