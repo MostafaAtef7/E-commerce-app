@@ -1,5 +1,6 @@
 import 'package:ecommerce/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final IconButton? iconButton;
@@ -10,7 +11,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
-@override
+  @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: kSubColor,
@@ -18,16 +19,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       scrolledUnderElevation: 0,
       leading: iconButton ?? const SizedBox(),
       centerTitle: true,
-      title: const Text(
+      title: Text(
         "E-Commerce",
         style: TextStyle(
           color: kPrimaryColor,
           fontWeight: FontWeight.bold,
-          fontSize: 20,
+          fontSize: 20
+              .sp,
           fontFamily: "Rubik",
         ),
       ),
     );
   }
 }
-

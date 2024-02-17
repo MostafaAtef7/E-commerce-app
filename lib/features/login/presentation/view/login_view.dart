@@ -4,6 +4,7 @@ import 'package:ecommerce/core/utils/widgets/custom_app_bar.dart';
 import 'package:ecommerce/core/utils/widgets/custom_button.dart';
 import 'package:ecommerce/core/utils/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginView extends StatefulWidget {
@@ -27,12 +28,8 @@ class _LoginViewState extends State<LoginView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("assets/images/login.jpg",
-                width: MediaQuery.of(context).size.width / 1.3,
-                height: MediaQuery.of(context).size.height / 3),
-            const SizedBox(
-              height: 30,
-            ),
+            Image.asset("assets/images/login.jpg", width: 250.w, height: 250.h),
+            30.verticalSpace,
             CustomTextFormField(
               // hintText: "email",
               suffixIcon: const Icon(Icons.email),
@@ -51,7 +48,7 @@ class _LoginViewState extends State<LoginView> {
               controller: null,
               obsureText: false,
               label: 'email',
-              onTap: (){},
+              onTap: () {},
             ),
             CustomTextFormField(
               // hintText: "password",
@@ -71,20 +68,16 @@ class _LoginViewState extends State<LoginView> {
               controller: null,
               obsureText: true,
               label: 'password',
-              onTap: (){},
+              onTap: () {},
             ),
-            const SizedBox(
-              height: 25,
-            ),
+            25.verticalSpace,
             CustomButton(
               text: "login",
               onPressed: () {},
-              width: 330,
-              height: 50,
+              width: 330.w,
+              height: 50.h,
             ),
-            const SizedBox(
-              height: 25,
-            ),
+            25.verticalSpace,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

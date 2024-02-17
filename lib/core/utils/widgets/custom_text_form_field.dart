@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -25,10 +26,10 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0).r,
       child: SizedBox(
-        height: 50,
-        width: 330,
+        height: 50.h,
+        width: 330.w,
         child: TextFormField(
           controller: controller,
           onChanged: onChanged,
@@ -37,22 +38,26 @@ class CustomTextFormField extends StatelessWidget {
           obscureText: obsureText,
           decoration: InputDecoration(
             labelText: label,
-            labelStyle: const TextStyle(
+            labelStyle: TextStyle(
               fontFamily: "Rubik",
               // fontWeight: FontWeight.bold,
-              color: Colors.blue,
-              fontSize: 15,
+              color: Colors.grey,
+              fontSize: 12.sp,
             ),
-            contentPadding: const EdgeInsets.only(left: 18, top: 7),
+            floatingLabelStyle: TextStyle(
+              color: Colors.blue,
+              fontSize: 15.sp,
+            ),
+            contentPadding: const EdgeInsets.only(left: 18, top: 7).r,
             // hintText: hintText,
-            // hintStyle: const TextStyle(color: Colors.grey, fontSize: 15),
+            hintStyle: TextStyle(fontSize: 13.sp),
             suffixIcon: suffixIcon,
             suffixIconColor: Colors.grey,
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(24)),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(24.r)),
             enabledBorder: OutlineInputBorder(
-                gapPadding: 10, borderRadius: BorderRadius.circular(24)),
+                gapPadding: 10.w, borderRadius: BorderRadius.circular(24.r)),
             focusedBorder: OutlineInputBorder(
-                gapPadding: 10, borderRadius: BorderRadius.circular(24)),
+                gapPadding: 10.w, borderRadius: BorderRadius.circular(24.r)),
           ),
           onTap: onTap,
         ),

@@ -3,6 +3,7 @@ import 'package:ecommerce/core/utils/widgets/custom_app_bar.dart';
 import 'package:ecommerce/core/utils/widgets/custom_button.dart';
 import 'package:ecommerce/core/utils/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class SignUpView extends StatefulWidget {
@@ -28,9 +29,9 @@ class _SignUpViewState extends State<SignUpView> {
     return Scaffold(
       appBar: CustomAppBar(
         iconButton: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios,
-            size: 20,
+            size: 20.r,
           ),
           onPressed: () {
             GoRouter.of(context).pop();
@@ -39,12 +40,8 @@ class _SignUpViewState extends State<SignUpView> {
       ),
       body: SingleChildScrollView(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Image.asset("assets/images/signup.jpg",
-              width: MediaQuery.of(context).size.width / 1.3,
-              height: MediaQuery.of(context).size.height / 3),
-          const SizedBox(
-            height: 30,
-          ),
+          Image.asset("assets/images/signup.jpg", width: 250.h, height: 250.h),
+          30.verticalSpace,
           CustomTextFormField(
             // hintText: "email",
             suffixIcon: const Icon(Icons.person),
@@ -124,18 +121,14 @@ class _SignUpViewState extends State<SignUpView> {
             label: 'password',
             onTap: () {},
           ),
-          const SizedBox(
-            height: 25,
-          ),
+          25.verticalSpace,
           CustomButton(
             text: "login",
             onPressed: () {},
-            width: 330,
-            height: 50,
+            width: 330.w,
+            height: 50.h,
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          10.verticalSpace,
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             const Text(
               "have an account? ",
@@ -158,9 +151,7 @@ class _SignUpViewState extends State<SignUpView> {
               ),
             ),
           ]),
-          const SizedBox(
-            height: 25,
-          ),
+          25.verticalSpace,
         ]),
       ),
     );
