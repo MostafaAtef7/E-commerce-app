@@ -1,8 +1,9 @@
 import 'package:ecommerce/constant.dart';
 import 'package:ecommerce/core/utils/widgets/custom_button.dart';
 import 'package:ecommerce/core/utils/widgets/custom_text_form_field.dart';
+import 'package:ecommerce/features/sign_up/presentation/manager/sign_up_auth_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,18 +15,25 @@ class SignUpViewBody extends StatefulWidget {
 }
 
 class _SignUpViewBodyState extends State<SignUpViewBody> {
-    late String userName;
+  late String userName;
   late String email;
   late String password;
   late TextEditingController birthdayController = TextEditingController();
+  GlobalKey<FormState> signUpKey = GlobalKey();
+  AutovalidateMode autoValidate = AutovalidateMode.always;
+
   @override
   void dispose() {
     birthdayController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Form(
+      autovalidateMode: autoValidate,
+      key: signUpKey,
+      child: SingleChildScrollView(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Image.asset("assets/images/signup.jpg", width: 250.h, height: 250.h),
           30.verticalSpace,
@@ -38,7 +46,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               if (value!.isEmpty) {
                 return "Field is Required";
               }
-              return "Error";
+              return null;
             },
             controller: null,
             obsureText: false,
@@ -58,7 +66,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               if (birthdayController.text.isEmpty) {
                 return "Field is Required";
               }
-              return "Error";
+              return null;
             },
             controller: birthdayController,
             obsureText: false,
@@ -81,7 +89,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               if (value!.isEmpty) {
                 return "Field is Required";
               }
-              return "Error";
+              return null;
             },
             controller: null,
             obsureText: false,
@@ -108,10 +116,17 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
             label: 'password',
             onTap: () {},
           ),
-          25.verticalSpace,
+          15.verticalSpace,
           CustomButton(
-            text: "login",
-            onPressed: () {},
+            text: "SignUp",
+            onPressed: () {
+              if (signUpKey.currentState!.validate()) {
+                BlocProvider.of<SignUpAuthCubit>(context)
+                    .signUpMethod(email: email, password: password);
+                print("sign up success!!!!!!!!!!!");
+              } else
+                print("sign up fail!!!!!!!!!!!");
+            },
             width: 330.w,
             height: 50.h,
           ),
@@ -140,10 +155,11 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
           ]),
           25.verticalSpace,
         ]),
-      );
-    
+      ),
+    );
   }
-    Future<void> pickDate() async {
+
+  Future<void> pickDate() async {
     DateTime? picker = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),

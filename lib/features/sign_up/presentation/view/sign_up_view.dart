@@ -1,3 +1,4 @@
+import 'package:ecommerce/core/utils/classes/app_router.dart';
 import 'package:ecommerce/core/utils/functions/snack_bar_message.dart';
 import 'package:ecommerce/core/utils/widgets/custom_app_bar.dart';
 import 'package:ecommerce/features/sign_up/presentation/manager/sign_up_auth_cubit.dart';
@@ -15,6 +16,7 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,13 +38,18 @@ class _SignUpViewState extends State<SignUpView> {
                   context: context,
                   content: state.errMsg,
                   contentColor: Colors.red);
+            } else if (state is SignUpAuthLoading) {
+              isLoading = true;
+            } else {
+              GoRouter.of(context).push(AppRouter.home);
+              isLoading = false;
             }
           },
           builder: (context, state) {
-            return state is SignUpAuthSuccess
+            return !isLoading
                 ? const SignUpViewBody()
                 : const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(color: Colors.blue,),
                   );
           },
         ));

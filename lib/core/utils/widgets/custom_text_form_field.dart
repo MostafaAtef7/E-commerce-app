@@ -26,9 +26,9 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0).r,
+      padding: const EdgeInsets.all(5.0).r,
       child: SizedBox(
-        height: 50.h,
+        height: 70.h,
         width: 330.w,
         child: TextFormField(
           controller: controller,
@@ -48,16 +48,18 @@ class CustomTextFormField extends StatelessWidget {
               color: Colors.blue,
               fontSize: 15.sp,
             ),
+            helperText: " ",
             contentPadding: const EdgeInsets.only(left: 18, top: 7).r,
             // hintText: hintText,
             hintStyle: TextStyle(fontSize: 13.sp),
             suffixIcon: suffixIcon,
             suffixIconColor: Colors.grey,
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(24.r)),
-            enabledBorder: OutlineInputBorder(
-                gapPadding: 10.w, borderRadius: BorderRadius.circular(24.r)),
-            focusedBorder: OutlineInputBorder(
-                gapPadding: 10.w, borderRadius: BorderRadius.circular(24.r)),
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(24.r)),
+            enabledBorder:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(24.r)),
+            focusedBorder:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(24.r)),
           ),
           onTap: onTap,
         ),
