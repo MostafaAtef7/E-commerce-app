@@ -1,7 +1,7 @@
 import 'package:ecommerce/core/utils/classes/app_router.dart';
 import 'package:ecommerce/core/utils/functions/snack_bar_message.dart';
 import 'package:ecommerce/core/utils/widgets/custom_app_bar.dart';
-import 'package:ecommerce/features/login/presentation/manager/login_auth_cubit.dart';
+import 'package:ecommerce/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -22,14 +22,14 @@ class _LoginViewState extends State<LoginView> {
       appBar: const CustomAppBar(
         iconButton: null,
       ),
-      body: BlocConsumer<LoginAuthCubit, LoginAuthState>(
+      body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is LoginAuthFailure) {
             customSnackBarMessage(
                 context: context,
                 content: state.errMsg,
                 contentColor: Colors.red);
-              GoRouter.of(context).pushReplacement(AppRouter.login);
+            GoRouter.of(context).pushReplacement(AppRouter.login);
           } else if (state is LoginAuthLoading) {
             isLoading = true;
           } else {

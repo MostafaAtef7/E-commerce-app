@@ -1,13 +1,15 @@
 import 'package:ecommerce/constant.dart';
+import 'package:ecommerce/core/utils/classes/app_router.dart';
 import 'package:ecommerce/core/utils/functions/snack_bar_message.dart';
 import 'package:ecommerce/core/utils/widgets/custom_buttom_with_image.dart';
 import 'package:ecommerce/core/utils/widgets/custom_button.dart';
 import 'package:ecommerce/core/utils/widgets/custom_text_form_field.dart';
-import 'package:ecommerce/features/sign_up/presentation/manager/sign_up_auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../manager/auth_cubit.dart';
 
 class SignUpViewBody extends StatefulWidget {
   const SignUpViewBody({super.key});
@@ -104,7 +106,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
             onPressed: () {
               if (signUpKey.currentState!.validate() &&
                   password == confirmPassword) {
-                BlocProvider.of<SignUpAuthCubit>(context)
+                BlocProvider.of<AuthCubit>(context)
                     .signUpMethod(email: email, password: password);
                 print("sign up success!!!!!!!!!!!");
               } else {
@@ -146,7 +148,11 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
           25.verticalSpace,
           CustomButtonWithImage(
             text: "Continue with Gmail",
-            onPressed: () {},
+            onPressed: () {
+              // BlocProvider.of<AuthCubit>(context).signOutFromGoogle();
+              BlocProvider.of<AuthCubit>(context).signInWithGoogle();
+              GoRouter.of(context).push(AppRouter.home);
+            },
             width: 330,
             height: 50,
             imagePath: "assets/images/gmail_logo.png",

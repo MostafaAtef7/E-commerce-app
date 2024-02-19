@@ -3,11 +3,12 @@ import 'package:ecommerce/core/utils/classes/app_router.dart';
 import 'package:ecommerce/core/utils/widgets/custom_buttom_with_image.dart';
 import 'package:ecommerce/core/utils/widgets/custom_button.dart';
 import 'package:ecommerce/core/utils/widgets/custom_text_form_field.dart';
-import 'package:ecommerce/features/login/presentation/manager/login_auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../manager/auth_cubit.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -24,7 +25,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   @override
   void dispose() {
     loginKey.currentState!.reset();
-    loginKey.currentState!.dispose();
     super.dispose();
   }
 
@@ -67,7 +67,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 text: "login",
                 onPressed: () {
                   if (loginKey.currentState!.validate()) {
-                    BlocProvider.of<LoginAuthCubit>(context).loginMethod(
+                    BlocProvider.of<AuthCubit>(context).loginMethod(
                         email: email, password: passwordController.text);
                     print("login success!!!!!!!!!!!");
                   } else
@@ -105,7 +105,11 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               25.verticalSpace,
               CustomButtonWithImage(
                 text: "Continue with Gmail",
-                onPressed: () {},
+                onPressed: () {
+                  // BlocProvider.of<AuthCubit>(context).signOutFromGoogle();
+                  BlocProvider.of<AuthCubit>(context).signInWithGoogle();
+                  GoRouter.of(context).push(AppRouter.home);
+                },
                 width: 330,
                 height: 50,
                 imagePath: "assets/images/gmail_logo.png",
