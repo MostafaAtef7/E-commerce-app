@@ -1,5 +1,6 @@
 import 'package:ecommerce/constant.dart';
 import 'package:ecommerce/core/utils/classes/app_router.dart';
+import 'package:ecommerce/core/utils/widgets/custom_buttom_with_image.dart';
 import 'package:ecommerce/core/utils/widgets/custom_button.dart';
 import 'package:ecommerce/core/utils/widgets/custom_text_form_field.dart';
 import 'package:ecommerce/features/login/presentation/manager/login_auth_cubit.dart';
@@ -29,76 +30,90 @@ class _LoginViewBodyState extends State<LoginViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      key: loginKey,
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("assets/images/login.jpg", width: 250.w, height: 250.h),
-            40.verticalSpace,
-            CustomTextFormField(
-              // hintText: "email",
-              suffixIcon: const Icon(Icons.email),
-              onChanged: (value) {
-                email = value;
-              },
-              controller: null,
-              obsureText: false,
-              label: 'email',
-              onTap: () {}, 
-            ),
-            CustomTextFormField(
-              // hintText: "password",
-              suffixIcon: const Icon(Icons.lock),
-              onChanged: (value) {},
-              controller: passwordController,
-              obsureText: true,
-              label: 'password',
-              onTap: () {}, 
-            ),
-            20.verticalSpace,
-            CustomButton(
-              text: "login",
-              onPressed: () {
-                if (loginKey.currentState!.validate()) {
-                  BlocProvider.of<LoginAuthCubit>(context).loginMethod(
-                      email: email, password: passwordController.text);
-                  print("login success!!!!!!!!!!!");
-                } else
-                  print("login fail!!!!!!!!!!!");
-              },
-              width: 330.w,
-              height: 50.h,
-            ),
-            25.verticalSpace,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "create an account? ",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Rubik",
-                      color: kPrimaryColor),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).push(AppRouter.signup);
-                  },
-                  child: const Text(
-                    "SignUp",
+    return Padding(
+      padding: const EdgeInsets.all(5.0).r,
+      child: Form(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        key: loginKey,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset("assets/images/login.jpg",
+                  width: 250.w, height: 250.h),
+              40.verticalSpace,
+              CustomTextFormField(
+                // hintText: "email",
+                suffixIcon: const Icon(Icons.email),
+                onChanged: (value) {
+                  email = value;
+                },
+                controller: null,
+                obsureText: false,
+                label: 'email',
+                onTap: () {},
+              ),
+              CustomTextFormField(
+                // hintText: "password",
+                suffixIcon: const Icon(Icons.lock),
+                onChanged: (value) {},
+                controller: passwordController,
+                obsureText: true,
+                label: 'password',
+                onTap: () {},
+              ),
+              20.verticalSpace,
+              CustomButton(
+                text: "login",
+                onPressed: () {
+                  if (loginKey.currentState!.validate()) {
+                    BlocProvider.of<LoginAuthCubit>(context).loginMethod(
+                        email: email, password: passwordController.text);
+                    print("login success!!!!!!!!!!!");
+                  } else
+                    print("login fail!!!!!!!!!!!");
+                },
+                width: 330,
+                height: 50,
+              ),
+              25.verticalSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "create an account? ",
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Rubik",
-                      color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Rubik",
+                        color: kPrimaryColor),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).push(AppRouter.signup);
+                    },
+                    child: const Text(
+                      "SignUp",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Rubik",
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              ),
+              25.verticalSpace,
+              CustomButtonWithImage(
+                text: "Continue with Gmail",
+                onPressed: () {},
+                width: 330,
+                height: 50,
+                imagePath: "assets/images/gmail_logo.png",
+                imageHeight: 30,
+                imageWidth: 30,
+              ),
+            ],
+          ),
         ),
       ),
     );

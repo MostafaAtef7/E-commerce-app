@@ -1,5 +1,6 @@
 import 'package:ecommerce/constant.dart';
 import 'package:ecommerce/core/utils/functions/snack_bar_message.dart';
+import 'package:ecommerce/core/utils/widgets/custom_buttom_with_image.dart';
 import 'package:ecommerce/core/utils/widgets/custom_button.dart';
 import 'package:ecommerce/core/utils/widgets/custom_text_form_field.dart';
 import 'package:ecommerce/features/sign_up/presentation/manager/sign_up_auth_cubit.dart';
@@ -117,28 +118,41 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
             height: 50.h,
           ),
           10.verticalSpace,
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const Text(
-              "have an account? ",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Rubik",
-                  color: kPrimaryColor),
-            ),
-            GestureDetector(
-              onTap: () {
-                GoRouter.of(context).pop();
-              },
-              child: const Text(
-                "SignIn",
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                "have an account? ",
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Rubik",
-                  color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Rubik",
+                    color: kPrimaryColor),
+              ),
+              GestureDetector(
+                onTap: () {
+                  GoRouter.of(context).pop();
+                },
+                child: const Text(
+                  "SignIn",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Rubik",
+                    color: Colors.blue,
+                  ),
                 ),
               ),
-            ),
-          ]),
+            ],
+          ),
+          25.verticalSpace,
+          CustomButtonWithImage(
+            text: "Continue with Gmail",
+            onPressed: () {},
+            width: 330,
+            height: 50,
+            imagePath: "assets/images/gmail_logo.png",
+            imageHeight: 30,
+            imageWidth: 30,
+          ),
           25.verticalSpace,
         ]),
       ),

@@ -2,16 +2,21 @@ import 'package:ecommerce/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomButton extends StatelessWidget {
+class CustomButtonWithImage extends StatelessWidget {
   final double width, height;
+  final double imageWidth, imageHeight;
   final String text;
+  final String imagePath;
   final Function()? onPressed;
-  const CustomButton(
+  const CustomButtonWithImage(
       {super.key,
       required this.width,
       required this.height,
       required this.text,
-      this.onPressed,});
+      this.onPressed,
+      required this.imageWidth,
+      required this.imageHeight,
+      required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +32,25 @@ class CustomButton extends StatelessWidget {
           ),
         ),
       ),
-      child: Text(
-        text,
-        style: TextStyle(
-          color: kSubColor,
-          fontFamily: "Rubik",
-          fontWeight: FontWeight.w400,
-          fontSize: 17.sp,
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            text,
+            style: TextStyle(
+              color: kSubColor,
+              fontFamily: "Rubik",
+              fontWeight: FontWeight.w400,
+              fontSize: 17.sp,
+            ),
+          ),
+          15.horizontalSpace,
+          Image.asset(
+            imagePath,
+            width: imageWidth.w,
+            height: imageHeight.h,
+          ),
+        ],
       ),
     );
   }
