@@ -29,6 +29,7 @@ class _LoginViewState extends State<LoginView> {
                 context: context,
                 content: state.errMsg,
                 contentColor: Colors.red);
+              GoRouter.of(context).pushReplacement(AppRouter.login);
           } else if (state is LoginAuthLoading) {
             isLoading = true;
           } else {

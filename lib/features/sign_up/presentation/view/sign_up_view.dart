@@ -38,10 +38,15 @@ class _SignUpViewState extends State<SignUpView> {
                   context: context,
                   content: state.errMsg,
                   contentColor: Colors.red);
+              GoRouter.of(context).pushReplacement(AppRouter.signup);
             } else if (state is SignUpAuthLoading) {
               isLoading = true;
             } else {
-              GoRouter.of(context).push(AppRouter.home);
+              customSnackBarMessage(
+                  context: context,
+                  content: "Register done Successfully, please Sign in now",
+                  contentColor: Colors.green);
+              GoRouter.of(context).push(AppRouter.login);
               isLoading = false;
             }
           },
@@ -49,7 +54,9 @@ class _SignUpViewState extends State<SignUpView> {
             return !isLoading
                 ? const SignUpViewBody()
                 : const Center(
-                    child: CircularProgressIndicator(color: Colors.blue,),
+                    child: CircularProgressIndicator(
+                      color: Colors.blue,
+                    ),
                   );
           },
         ));

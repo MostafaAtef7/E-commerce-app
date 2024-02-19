@@ -1,3 +1,4 @@
+import 'package:ecommerce/constant.dart';
 import 'package:flutter/material.dart';
 
 void customSnackBarMessage(
@@ -6,9 +7,14 @@ void customSnackBarMessage(
     required Color contentColor}) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
+      backgroundColor: kSubColor,
+      elevation: 2,
       content: Text(
         content,
-        style: TextStyle(color: contentColor),
+        style: TextStyle(
+          color: contentColor,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     ),
   );

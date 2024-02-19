@@ -17,14 +17,20 @@ class LoginViewBody extends StatefulWidget {
 
 class _LoginViewBodyState extends State<LoginViewBody> {
   late String email;
-  late String password;
+  TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> loginKey = GlobalKey();
-  AutovalidateMode autoValidate = AutovalidateMode.always;
+
+  @override
+  void dispose() {
+    loginKey.currentState!.reset();
+    loginKey.currentState!.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      autovalidateMode: autoValidate,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       key: loginKey,
       child: SingleChildScrollView(
         child: Column(
@@ -35,51 +41,30 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             CustomTextFormField(
               // hintText: "email",
               suffixIcon: const Icon(Icons.email),
-              onSumbitted: (value) {
-                email = value;
-              },
               onChanged: (value) {
                 email = value;
-              },
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return "Field is Required";
-                }
-                return null;
               },
               controller: null,
               obsureText: false,
               label: 'email',
-              onTap: () {
-              },
+              onTap: () {}, 
             ),
             CustomTextFormField(
               // hintText: "password",
               suffixIcon: const Icon(Icons.lock),
-              onSumbitted: (value) {
-                password = value;
-              },
-              onChanged: (value) {
-                password = value;
-              },
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return "Field is Required";
-                }
-                return null;
-              },
-              controller: null,
+              onChanged: (value) {},
+              controller: passwordController,
               obsureText: true,
               label: 'password',
-              onTap: () {},
+              onTap: () {}, 
             ),
             20.verticalSpace,
             CustomButton(
               text: "login",
               onPressed: () {
                 if (loginKey.currentState!.validate()) {
-                  BlocProvider.of<LoginAuthCubit>(context)
-                      .loginMethod(email: email, password: password);
+                  BlocProvider.of<LoginAuthCubit>(context).loginMethod(
+                      email: email, password: passwordController.text);
                   print("login success!!!!!!!!!!!");
                 } else
                   print("login fail!!!!!!!!!!!");

@@ -1,4 +1,5 @@
 import 'package:ecommerce/constant.dart';
+import 'package:ecommerce/core/utils/functions/snack_bar_message.dart';
 import 'package:ecommerce/core/utils/widgets/custom_button.dart';
 import 'package:ecommerce/core/utils/widgets/custom_text_form_field.dart';
 import 'package:ecommerce/features/sign_up/presentation/manager/sign_up_auth_cubit.dart';
@@ -18,9 +19,10 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
   late String userName;
   late String email;
   late String password;
+  late String confirmPassword;
   late TextEditingController birthdayController = TextEditingController();
+  late TextEditingController useNameController = TextEditingController();
   GlobalKey<FormState> signUpKey = GlobalKey();
-  AutovalidateMode autoValidate = AutovalidateMode.always;
 
   @override
   void dispose() {
@@ -31,7 +33,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      autovalidateMode: autoValidate,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       key: signUpKey,
       child: SingleChildScrollView(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -40,13 +42,8 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
           CustomTextFormField(
             // hintText: "email",
             suffixIcon: const Icon(Icons.person),
-            onSumbitted: (value) {},
-            onChanged: (value) {},
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "Field is Required";
-              }
-              return null;
+            onChanged: (value) {
+              email = value;
             },
             controller: null,
             obsureText: false,
@@ -56,17 +53,8 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
           CustomTextFormField(
             // hintText: "password",
             suffixIcon: const Icon(Icons.calendar_today),
-            onSumbitted: (value) {
-              password = value;
-            },
             onChanged: (value) {
               password = value;
-            },
-            validator: (value) {
-              if (birthdayController.text.isEmpty) {
-                return "Field is Required";
-              }
-              return null;
             },
             controller: birthdayController,
             obsureText: false,
@@ -79,53 +67,51 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
           CustomTextFormField(
             // hintText: "email",
             suffixIcon: const Icon(Icons.email),
-            onSumbitted: (value) {
-              email = value;
-            },
-            onChanged: (value) {
-              email = value;
-            },
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "Field is Required";
-              }
-              return null;
-            },
             controller: null,
             obsureText: false,
             label: 'email',
             onTap: () {},
+            onChanged: (value) {
+              email = value;
+            },
           ),
           CustomTextFormField(
             // hintText: "password",
             suffixIcon: const Icon(Icons.lock),
-            onSumbitted: (value) {
-              password = value;
-            },
             onChanged: (value) {
               password = value;
-            },
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "Field is Required";
-              }
-              return null;
             },
             controller: null,
             obsureText: true,
             label: 'password',
             onTap: () {},
           ),
+          CustomTextFormField(
+            // hintText: "password",
+            suffixIcon: const Icon(Icons.lock),
+            onChanged: (value) {
+              confirmPassword = value;
+            },
+            controller: null,
+            obsureText: true,
+            label: 'confirm password',
+            onTap: () {},
+          ),
           15.verticalSpace,
           CustomButton(
             text: "SignUp",
             onPressed: () {
-              if (signUpKey.currentState!.validate()) {
+              if (signUpKey.currentState!.validate() &&
+                  password == confirmPassword) {
                 BlocProvider.of<SignUpAuthCubit>(context)
                     .signUpMethod(email: email, password: password);
                 print("sign up success!!!!!!!!!!!");
-              } else
-                print("sign up fail!!!!!!!!!!!");
+              } else {
+                customSnackBarMessage(
+                    context: context,
+                    content: "Password does not match",
+                    contentColor: Colors.red);
+              }
             },
             width: 330.w,
             height: 50.h,

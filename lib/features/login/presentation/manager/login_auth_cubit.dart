@@ -18,7 +18,7 @@ class LoginAuthCubit extends Cubit<LoginAuthState> {
         emit(LoginAuthFailure(errMsg: 'No user found for that email.'));
       } else if (e.code == 'wrong-password') {
         emit(
-            LoginAuthFailure(errMsg: 'Wrong password provided for that user.'));
+            LoginAuthFailure(errMsg: 'Wrong password.'));
       } else {
         emit(LoginAuthFailure(errMsg: 'Something wrong , please try again !'));
       }
