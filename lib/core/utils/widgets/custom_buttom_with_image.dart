@@ -24,7 +24,7 @@ class CustomButtonWithImage extends StatelessWidget {
       onPressed: onPressed,
       style: ButtonStyle(
         fixedSize: MaterialStateProperty.all<Size>(Size(width.w, height.h)),
-        backgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
+        backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
         shape: MaterialStateProperty.all<OutlinedBorder>(
           RoundedRectangleBorder(
             borderRadius:
@@ -45,10 +45,13 @@ class CustomButtonWithImage extends StatelessWidget {
             ),
           ),
           15.horizontalSpace,
-          Image.asset(
-            imagePath,
-            width: imageWidth.w,
-            height: imageHeight.h,
+          CircleAvatar(
+            backgroundColor: kPrimaryColor,
+            child: Image.asset(
+              imagePath,
+              width: imageWidth.w,
+              height: imageHeight.h,
+            ),
           ),
         ],
       ),

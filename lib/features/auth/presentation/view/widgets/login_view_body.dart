@@ -24,7 +24,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
 
   @override
   void dispose() {
-    loginKey.currentState!.reset();
+    if (loginKey.currentState != null) {
+      loginKey.currentState!.reset();
+    }
     super.dispose();
   }
 

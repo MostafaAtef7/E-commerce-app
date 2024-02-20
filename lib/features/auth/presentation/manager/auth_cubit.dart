@@ -37,8 +37,7 @@ class AuthCubit extends Cubit<AuthState> {
       if (e.code == 'weak-password') {
         emit(SignUpAuthFailure(errMsg: 'The password provided is too weak.'));
       } else if (e.code == 'email-already-in-use') {
-        emit(SignUpAuthFailure(
-            errMsg: 'The account already exists for that email.'));
+        emit(SignUpAuthFailure(errMsg: 'The account already exists.'));
       } else {
         emit(SignUpAuthFailure(errMsg: 'Something wrong , please try again !'));
       }
@@ -48,14 +47,12 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signInWithGoogle() async {
     emit(LoginAuthLoading());
     try {
-      print("!!!!!!!!!!!!1111111");
       if (FirebaseAuth.instance.currentUser != null) {
         await FirebaseAuth.instance.signOut();
         await GoogleSignIn().signOut();
       } else {
         // Trigger Google Sign In
         final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-        print("!!!!!!!!!!!!1111111");
 
         // Get authentication details from Google
         final GoogleSignInAuthentication? googleAuth =

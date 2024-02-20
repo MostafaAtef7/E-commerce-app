@@ -1,3 +1,4 @@
+import 'package:ecommerce/core/utils/classes/app_router.dart';
 import 'package:ecommerce/core/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +19,10 @@ class HomeView extends StatelessWidget {
           text: "Log Out",
           onPressed: () {
             BlocProvider.of<AuthCubit>(context).signOutFromGoogle();
-            GoRouter.of(context).pop();
+            while (context.canPop()) {
+              GoRouter.of(context).pop();
+            }
+            context.push(AppRouter.login);
           },
         ),
       ),

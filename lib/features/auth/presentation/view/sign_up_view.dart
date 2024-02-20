@@ -18,9 +18,11 @@ class SignUpView extends StatefulWidget {
 
 class _SignUpViewState extends State<SignUpView> {
   bool isLoading = false;
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: scaffoldKey,
         appBar: CustomAppBar(
           iconButton: IconButton(
             icon: Icon(
@@ -36,13 +38,13 @@ class _SignUpViewState extends State<SignUpView> {
           listener: (context, state) {
             if (state is SignUpAuthFailure) {
               customSnackBarMessage(
-                  context: context,
+                  context: scaffoldKey.currentContext!,
                   content: state.errMsg,
                   contentColor: Colors.red);
               GoRouter.of(context).pushReplacement(AppRouter.signup);
             } else if (state is SignUpAuthLoading) {
               isLoading = true;
-            } else if(state is SignUpAuthSuccess) {
+            } else if (state is SignUpAuthSuccess) {
               customSnackBarMessage(
                   context: context,
                   content: "Register done Successfully, please Sign in now",
@@ -57,7 +59,7 @@ class _SignUpViewState extends State<SignUpView> {
                   contentColor: Colors.red);
             } else if (state is LoginAuthLoading) {
               isLoading = true;
-            } else if(state is LoginAuthSuccess) {
+            } else if (state is LoginAuthSuccess) {
               GoRouter.of(context).push(AppRouter.home);
               isLoading = false;
             }

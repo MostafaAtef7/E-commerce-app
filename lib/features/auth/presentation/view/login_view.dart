@@ -16,9 +16,12 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   bool isLoading = false;
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: const CustomAppBar(
         iconButton: null,
       ),
@@ -26,7 +29,7 @@ class _LoginViewState extends State<LoginView> {
         listener: (context, state) {
           if (state is LoginAuthFailure) {
             customSnackBarMessage(
-                context: context,
+                context: scaffoldKey.currentContext!,
                 content: state.errMsg,
                 contentColor: Colors.red);
             GoRouter.of(context).pushReplacement(AppRouter.login);
