@@ -7,7 +7,6 @@ class HomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (ctx,index) => const ProductContainer());
+        itemCount: 10, itemBuilder: (ctx, index) => const ProductContainer());
   }
 }

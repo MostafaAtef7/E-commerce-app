@@ -39,7 +39,7 @@ abstract class AppRouter {
           child: const HomeView(),
         ),
       ),
-            GoRoute(
+      GoRoute(
         path: home,
         builder: (context, state) => const ProductDetailsView(),
       ),
