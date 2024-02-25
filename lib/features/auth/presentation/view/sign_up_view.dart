@@ -40,7 +40,7 @@ class _SignUpViewState extends State<SignUpView> {
               customSnackBarMessage(
                   context: scaffoldKey.currentContext!,
                   content: state.errMsg,
-                  contentColor: Colors.red);
+                  backgroundColor: Colors.red);
               GoRouter.of(context).pushReplacement(AppRouter.signup);
             } else if (state is SignUpAuthLoading) {
               isLoading = true;
@@ -48,7 +48,7 @@ class _SignUpViewState extends State<SignUpView> {
               customSnackBarMessage(
                   context: context,
                   content: "Register done Successfully, please Sign in now",
-                  contentColor: Colors.green);
+                  backgroundColor: Colors.green);
               GoRouter.of(context).push(AppRouter.login);
               isLoading = false;
             }
@@ -56,7 +56,7 @@ class _SignUpViewState extends State<SignUpView> {
               customSnackBarMessage(
                   context: context,
                   content: state.errMsg,
-                  contentColor: Colors.red);
+                  backgroundColor: Colors.red);
             } else if (state is LoginAuthLoading) {
               isLoading = true;
             } else if (state is LoginAuthSuccess) {

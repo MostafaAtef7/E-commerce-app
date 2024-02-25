@@ -31,7 +31,7 @@ class _LoginViewState extends State<LoginView> {
             customSnackBarMessage(
                 context: scaffoldKey.currentContext!,
                 content: state.errMsg,
-                contentColor: Colors.red);
+                backgroundColor: Colors.red);
             GoRouter.of(context).pushReplacement(AppRouter.login);
           } else if (state is LoginAuthLoading) {
             isLoading = true;

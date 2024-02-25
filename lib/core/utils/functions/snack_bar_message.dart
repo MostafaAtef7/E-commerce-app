@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 void customSnackBarMessage(
     {required BuildContext context,
     required String content,
-    required Color contentColor}) {
+    required Color backgroundColor}) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
-      backgroundColor: kSubColor,
+      backgroundColor: backgroundColor,
       elevation: 2,
       content: Text(
         content,
-        style: TextStyle(
-          color: contentColor,
+        style: const TextStyle(
+          color: kSubColor,
           fontWeight: FontWeight.bold,
         ),
       ),

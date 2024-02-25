@@ -113,7 +113,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 customSnackBarMessage(
                     context: context,
                     content: "Password does not match",
-                    contentColor: Colors.red);
+                    backgroundColor: Colors.red);
               }
             },
             width: 330.w,
