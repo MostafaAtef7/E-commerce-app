@@ -1,5 +1,6 @@
 import 'package:ecommerce/features/auth/presentation/view/login_view.dart';
 import 'package:ecommerce/features/home_view/presentation/view/home_view.dart';
+import 'package:ecommerce/features/product_details/presentation/view/product_details_view.dart';
 import 'package:ecommerce/features/splash/presentation/view/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -10,6 +11,7 @@ abstract class AppRouter {
   static const login = "/login";
   static const signup = "/signup";
   static const home = "/home";
+  static const productDetails = "/productDetails";
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -36,6 +38,10 @@ abstract class AppRouter {
           create: (context) => AuthCubit(),
           child: const HomeView(),
         ),
+      ),
+            GoRoute(
+        path: home,
+        builder: (context, state) => const ProductDetailsView(),
       ),
     ],
   );
