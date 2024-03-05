@@ -3,8 +3,10 @@ import 'package:ecommerce/core/utils/classes/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'core/utils/classes/simple_bloc_observer.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -12,6 +14,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+    Bloc.observer = SimpleBlocObserver();
 
   runApp(
     DevicePreview(

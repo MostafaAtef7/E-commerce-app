@@ -1,4 +1,6 @@
 import 'package:ecommerce/features/auth/presentation/view/login_view.dart';
+import 'package:ecommerce/features/home_view/data/repo/home_repo_implementation.dart';
+import 'package:ecommerce/features/home_view/presentation/manager/home_cubit.dart';
 import 'package:ecommerce/features/home_view/presentation/view/home_view.dart';
 import 'package:ecommerce/features/product_details/presentation/view/product_details_view.dart';
 import 'package:ecommerce/features/splash/presentation/view/splash_view.dart';
@@ -35,7 +37,7 @@ abstract class AppRouter {
       GoRoute(
         path: home,
         builder: (context, state) => BlocProvider(
-          create: (context) => AuthCubit(),
+          create: (context) => HomeCubit(HomeRepoImplementation())..fetchAllProducts(),
           child: const HomeView(),
         ),
       ),

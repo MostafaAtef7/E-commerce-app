@@ -4,32 +4,37 @@ import 'package:ecommerce/features/home_view/data/repo/home_repo.dart';
 
 class HomeRepoImplementation implements HomeRepo {
   @override
-  Future<List<ProductsModel>> getAllProducts() async{
+  Future<List<ProductsModel>> getAllProducts() async {
     try {
-  List<Map<String,dynamic>> data = await ApiServices().get(url: "products");
-  List<ProductsModel> products = [];
-  for(var item in data) {
-  products.add(ProductsModel.fromJson(item));
+      List<Map<String,dynamic>> data = await ApiServices().getApi(url: "products");
+      List<ProductsModel> products = [];
+      for (var item in data) {
+        products.add(ProductsModel.fromJson(item));
+      }
+      print(products);
+      print("الحمد لله");
+      return products;
+    } catch (e) {
+      print(e);
+      print("XXXXXXXXXX;");
+      return [];
+    }
   }
-  return products;
-} catch (e) {
-  print("!!!!!!!!!!!!!!");
-  return [];
-}
 
-  }
   @override
-  Future<List<ProductsModel>> getCategoty({required String categoryName}) async{
+  Future<List<ProductsModel>> getCategoty(
+      {required String categoryName}) async {
     try {
-  List<Map<String,dynamic>> data = await ApiServices().get(url: "products/category/$categoryName");
-  List<ProductsModel> products = [];
-  for(var item in data) {
-  products.add(ProductsModel.fromJson(item));
-  }
-  return products;
-} catch (e) {
-  print("!!!!!!!!!!!!!!");
-  return [];
-}
+      List<Map<String, dynamic>> data =
+          await ApiServices().getApi(url: "products/category/$categoryName");
+      List<ProductsModel> products = [];
+      for (var item in data) {
+        products.add(ProductsModel.fromJson(item));
+      }
+      return products;
+    } catch (e) {
+      print("!!!!!!!!!!!!!!");
+      return [];
+    }
   }
 }
